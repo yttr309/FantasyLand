@@ -11,7 +11,7 @@ public class MoveCtrl : MonoBehaviour
         GEAR_VR
     }
 
-    public MoveType moveType = MoveType.WAY_POINT;
+    public MoveType moveType = MoveType.LOOK_AT;
     public float speed = 1.0f;
     public float damping = 3.0f;
 
@@ -24,6 +24,9 @@ public class MoveCtrl : MonoBehaviour
     private Transform camTr;
 
     private int nextIdx = 1;
+
+
+    public static bool isStopped = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +48,9 @@ public class MoveCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (isStopped) return;
+
         switch (moveType) {
             case MoveType.WAY_POINT:
                 MoveWayPoint();
